@@ -1,0 +1,27 @@
+// Bicep parameters file for main.bicep
+// Naming conventions follow Azure best practices (https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/azure-best-practices/resource-abbreviations)
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "appServiceName": {
+      "value": "appsvc-ghmdemo-dev-weu-001"
+    },
+    "cosmosDbAccountName": {
+      "value": "cosmos-ghmdemodev001"
+    },
+    "storageAccountName": {
+      "value": "stghmdemodev001"
+    },
+    "location": {
+      "value": "eastus2"
+    },
+    "tags": {
+      "value": {
+        "ProjectName": "GitHub Markdown Example",
+        "Environment": "Dev",
+        "Technical Owner": "abdur.raheem@avanade.com"
+      }
+    }
+  }
+}
