@@ -1,50 +1,53 @@
 targetScope = 'resourceGroup'
 
 // Main Bicep file to orchestrate all modules
+@description('The name of the App Service resource (Web App).')
 param appServiceName string
+
+@description('The name of the App Service Plan.')
+param appServicePlanName string
+
+@description('The name of the Azure Cosmos DB account.')
 param cosmosDbAccountName string
+
+@description('The name of the Azure Storage Account.')
 param storageAccountName string
+
+@description('The Azure region to deploy resources into.')
 param location string = 'westus3'
-param tags object = {
-  ProjectName: 'GitHub Markdown Example'
-  Environment: 'Dev'
-  'Technical Owner': 'abdur.raheem@avanade.com'
-  CostCenter: '12345'
-  Application: 'SampleApp'
-  Owner: 'abdur.raheem@avanade.com'
-  Confidentiality: 'Internal'
-  Criticality: 'Medium'
-  ServiceClass: 'Gold'
-}
+
+@description('Resource tags to apply to all resources.')
+param tags object
 
 // Add module references for appService, cosmosDb, and storageAccount
 module appService 'appService.bicep' = {
-  name: 'appServiceModule'
+  name: 'appService'
   params: {
-    appServiceName: appServiceName
     location: location
     tags: tags
+    appServicePlanName: appServicePlanName
+    appServiceName: appServiceName
   }
 }
 
 module cosmosDb 'cosmosDb.bicep' = {
-  name: 'cosmosDbModule'
+  name: 'cosmosDb'
   params: {
-    cosmosDbAccountName: cosmosDbAccountName
     location: location
     tags: tags
+    cosmosDbAccountName: cosmosDbAccountName
   }
 }
 
 module storageAccount 'storageAccount.bicep' = {
-  name: 'storageAccountModule'
+  name: 'storageAccount'
   params: {
-    storageAccountName: storageAccountName
     location: location
     tags: tags
+    storageAccountName: storageAccountName
   }
 }
 
-output appServiceId string = appService.outputs.appServiceId
-output cosmosDbAccountId string = cosmosDb.outputs.cosmosDbAccountId
-output storageAccountId string = storageAccount.outputs.storageAccountId
+output appServiceResourceId string = appService.outputs.appServiceId
+output cosmosDbResourceId string = cosmosDb.outputs.cosmosDbAccountId
+output storageAccountResourceId string = storageAccount.outputs.storageAccountId

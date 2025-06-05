@@ -1,6 +1,6 @@
 // Parameters for Cosmos DB
 param cosmosDbAccountName string
-param location string = 'westus3'
+param location string
 @description('Resource tags following CAF best practices. Tags are passed from main.bicep.')
 param tags object
 
@@ -22,11 +22,10 @@ resource cosmosDbAccount 'Microsoft.DocumentDB/databaseAccounts@2023-04-15' = {
         name: 'EnableServerless'
       }
     ]
-    enableFreeTier: true
+    enableFreeTier: false
     enableAutomaticFailover: false
     enableAnalyticalStorage: false
     enableMultipleWriteLocations: false
-    isVirtualNetworkFilterEnabled: false
     publicNetworkAccess: 'Enabled'
   }
   tags: tags

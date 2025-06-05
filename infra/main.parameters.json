@@ -4,30 +4,30 @@
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
-    "appServiceName": {
-      "value": "appsvc-ghmdemo-dev-weu-001"
-    },
-    "cosmosDbAccountName": {
-      "value": "cosmos-ghmdemodev001"
-    },
-    "storageAccountName": {
-      "value": "stghmdemodev001"
-    },
     "location": {
-      "value": "eastus2"
+      "value": "westus3"
     },
     "tags": {
       "value": {
-        "ProjectName": "GitHub Markdown Example",
-        "Environment": "Dev",
-        "Technical Owner": "abdur.raheem@avanade.com",
+        "Environment": "dev",
+        "Owner": "your-team",
         "CostCenter": "12345",
-        "Application": "SampleApp",
-        "Owner": "abdur.raheem@avanade.com",
-        "Confidentiality": "Internal",
-        "Criticality": "Medium",
-        "ServiceClass": "Gold"
+        "Project": "AzGHCPDemo",
+        "Department": "Engineering",
+        "Confidentiality": "Internal"
       }
+    },
+    "appServicePlanName": {
+      "value": "asp-ghcp-demo"
+    },
+    "appServiceName": {
+      "value": "app-ghcp-demo"
+    },
+    "cosmosDbAccountName": {
+      "value": "cosmos-ghcp-demo"
+    },
+    "storageAccountName": {
+      "value": "stghcpdemo"
     }
   }
 }

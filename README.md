@@ -1,64 +1,57 @@
-# Azure Bicep Resources Deployment
-
-## Overview
-This project uses Azure Bicep to deploy an App Service (Windows, Standard SKU), Cosmos DB (Serverless), and a Storage Account (Standard_LRS) to Azure. All resources are parameterized, follow Azure best practices, and are orchestrated via `main.bicep` at the resource group scope.
+# Azure Bicep Infrastructure Deployment
 
 ## Prerequisites
-- Azure CLI installed ([Install Guide](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli))
-- Azure Bicep CLI installed ([Install Guide](https://docs.microsoft.com/en-us/azure/azure-resource-manager/bicep/install))
-- Logged in to Azure CLI:  
-  ```pwsh
-  az login
-  ```
-- Set your subscription (replace with your subscription name or ID):  
-  ```pwsh
-  az account set --subscription "<your-subscription-name-or-id>"
-  ```
+- Azure CLI installed and logged in
+- Bicep CLI (included with latest Azure CLI)
+- Access to an Azure subscription and resource group
 
-## File Structure
-```
-infra/
-  appService.bicep         # App Service module
-  cosmosDb.bicep           # Cosmos DB module
-  storageAccount.bicep     # Storage Account module
-  main.bicep               # Orchestrates all modules
-  main.parameters.json     # Input parameters (edit as needed)
+## Files
+- All Bicep and parameter files are in the `infra/` folder.
+
+## How to Validate Bicep Files
+
+```sh
+az bicep build --file infra/main.bicep
+az bicep build --file infra/appService.bicep
+az bicep build --file infra/cosmosDb.bicep
+az bicep build --file infra/storageAccount.bicep
 ```
 
-## Validation
-Validate your Bicep files locally before deployment:
+## How to Validate Against a Resource Group
 
-```pwsh
-az bicep build --file .\infra\main.bicep
+```sh
+az deployment group validate \
+  --resource-group <your-resource-group> \
+  --template-file infra/main.bicep \
+  --parameters infra/main.parameters.json
 ```
 
-Validate against an existing resource group (replace `<resource-group-name>`):
+## How to Deploy (Ask before running)
 
-```pwsh
-az deployment group validate --resource-group <resource-group-name> --template-file .\infra\main.bicep --parameters .\infra\main.parameters.json
+```sh
+az deployment group create \
+  --resource-group <your-resource-group> \
+  --template-file infra/main.bicep \
+  --parameters infra/main.parameters.json
 ```
 
-## Deployment
-To deploy the resources (replace `<resource-group-name>`):
+## How to Test/Verify
+- Check Azure Portal for deployed resources.
+- Use Azure CLI to list resources:
 
-```pwsh
-az deployment group create --resource-group <resource-group-name> --template-file .\infra\main.bicep --parameters .\infra\main.parameters.json
+```sh
+az resource list --resource-group <your-resource-group>
 ```
 
-## Outputs
-After deployment, the resource IDs for App Service, Cosmos DB, and Storage Account will be output.
+- Check outputs for resource IDs:
 
-## Testing
-- Verify resources in the Azure Portal under your resource group.
-- Check outputs in the CLI for resource IDs.
-
-## Cleanup
-To remove all resources:
-
-```pwsh
-az group delete --name <resource-group-name>
+```sh
+az deployment group show --resource-group <your-resource-group> --name <deployment-name> --query properties.outputs
 ```
+
+## Tagging and Naming
+- Resource tags and names follow [Azure best practices](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/azure-best-practices/resource-tagging) and [resource abbreviations](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/azure-best-practices/resource-abbreviations).
 
 ---
 
-For more details, see the [Azure Bicep documentation](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/).
+**Note:** Update parameter values in `infra/main.parameters.json` as needed for your environment.

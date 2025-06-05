@@ -3,7 +3,7 @@
 param storageAccountName string
 
 @description('The Azure region to deploy the Storage Account.')
-param location string = 'westus3'
+param location string
 
 @description('Resource tags following CAF best practices.')
 param tags object
@@ -20,17 +20,6 @@ resource storageAccount 'Microsoft.Storage/storageAccounts@2023-01-01' = {
     minimumTlsVersion: 'TLS1_2'
     allowBlobPublicAccess: false
     supportsHttpsTrafficOnly: true
-    encryption: {
-      services: {
-        blob: {
-          enabled: true
-        }
-        file: {
-          enabled: true
-        }
-      }
-      keySource: 'Microsoft.Storage'
-    }
   }
   tags: tags
 }
