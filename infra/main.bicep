@@ -9,6 +9,12 @@ param tags object = {
   ProjectName: 'GitHub Markdown Example'
   Environment: 'Dev'
   'Technical Owner': 'abdur.raheem@avanade.com'
+  CostCenter: '12345'
+  Application: 'SampleApp'
+  Owner: 'abdur.raheem@avanade.com'
+  Confidentiality: 'Internal'
+  Criticality: 'Medium'
+  ServiceClass: 'Gold'
 }
 
 // Add module references for appService, cosmosDb, and storageAccount

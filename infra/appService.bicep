@@ -1,11 +1,8 @@
 // Parameters for App Service
 param appServiceName string
 param location string = 'westus3'
-param tags object = {
-  ProjectName: 'GitHub Markdown Example'
-  Environment: 'Dev'
-  'Technical Owner': 'abdur.raheem@avanade.com'
-}
+@description('Resource tags following CAF best practices. Tags are passed from main.bicep.')
+param tags object
 
 resource appServicePlan 'Microsoft.Web/serverfarms@2023-01-01' = {
   name: '${appServiceName}-plan'

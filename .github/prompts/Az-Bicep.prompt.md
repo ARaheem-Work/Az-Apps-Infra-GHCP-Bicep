@@ -13,12 +13,7 @@ This prompt file is designed to help GitHub Copilot generate structured Azure Bi
 - Keep all files in top level infra folder. 
 - Use main.bicep to reference all modules. Set targetScope to 'resourceGroup' in main.bicep.
 - Split Azure resources into seperate module files
-- Use following resource tags
-    | Key               | Value                     |
-    |-----------        |---------------------------|
-    | ProjectName       | GitHub Markdown Example   |
-    | Environment       | Dev                       |
-    | Technical Owner   | abdur.raheem@avanade.com  | 
+- Generate resource tags based on guidance on this web page: https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/azure-best-practices/resource-tagging. Pass tags from main modules to child modules.
 - Create a seperate bicep input parameter file for deploying azure resources and use conventions as per: https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/azure-best-practices/resource-abbreviations
 - Add Azure Resource ID output to the corresponding module files.
 - Validate bicep files Locally

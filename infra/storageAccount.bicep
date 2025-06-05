@@ -1,11 +1,12 @@
 // Parameters for Storage Account
+@description('The name of the Storage Account. Must be globally unique and use Azure abbreviations.')
 param storageAccountName string
+
+@description('The Azure region to deploy the Storage Account.')
 param location string = 'westus3'
-param tags object = {
-  ProjectName: 'GitHub Markdown Example'
-  Environment: 'Dev'
-  'Technical Owner': 'abdur.raheem@avanade.com'
-}
+
+@description('Resource tags following CAF best practices.')
+param tags object
 
 resource storageAccount 'Microsoft.Storage/storageAccounts@2023-01-01' = {
   name: storageAccountName
