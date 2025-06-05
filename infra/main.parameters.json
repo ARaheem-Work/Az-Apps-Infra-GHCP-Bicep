@@ -1,5 +1,3 @@
-// Bicep parameters file for main.bicep
-// Naming conventions follow Azure best practices (https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/azure-best-practices/resource-abbreviations)
 {
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
   "contentVersion": "1.0.0.0",
@@ -9,25 +7,19 @@
     },
     "tags": {
       "value": {
-        "Environment": "dev",
-        "Owner": "your-team",
-        "CostCenter": "12345",
-        "Project": "AzGHCPDemo",
-        "Department": "Engineering",
-        "Confidentiality": "Internal"
+        "env": "dev",
+        "owner": "your-team",
+        "project": "sample-bicep"
       }
     },
-    "appServicePlanName": {
-      "value": "asp-ghcp-demo"
-    },
     "appServiceName": {
-      "value": "app-ghcp-demo"
+      "value": "appsvc-web-wus3-001"
     },
     "cosmosDbAccountName": {
-      "value": "cosmos-ghcp-demo"
+      "value": "cosmosdb-srvls-wus3-001"
     },
     "storageAccountName": {
-      "value": "stghcpdemo"
+      "value": "stggenwus3001"
     }
   }
 }

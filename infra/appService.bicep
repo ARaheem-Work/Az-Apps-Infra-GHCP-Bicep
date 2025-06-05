@@ -1,12 +1,9 @@
-// Parameters for App Service
-param appServiceName string
 param location string
-@description('Resource tags following CAF best practices. Tags are passed from main.bicep.')
 param tags object
-param appServicePlanName string
+param appServiceName string
 
 resource appServicePlan 'Microsoft.Web/serverfarms@2023-01-01' = {
-  name: appServicePlanName
+  name: '${appServiceName}-asp'
   location: location
   sku: {
     name: 'S1'
@@ -19,12 +16,12 @@ resource appServicePlan 'Microsoft.Web/serverfarms@2023-01-01' = {
 resource appService 'Microsoft.Web/sites@2023-01-01' = {
   name: appServiceName
   location: location
-  kind: 'app'
+  kind: 'app,windows'
+  tags: tags
   properties: {
     serverFarmId: appServicePlan.id
     httpsOnly: true
   }
-  tags: tags
 }
 
-output appServiceId string = appService.id
+output resourceId string = appService.id
