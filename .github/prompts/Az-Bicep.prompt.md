@@ -1,7 +1,4 @@
----
-
----
-# GitHub Copilot Prompt for Azure Bicep Resources Deployment
+# Azure Bicep Infrastructure as Code template generator tempate
 
 ## Objective
 This prompt file is designed to help GitHub Copilot generate structured Azure Bicep templates efficiently, following best practices for cloud resources deployment.
